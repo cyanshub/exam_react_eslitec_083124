@@ -1,0 +1,32 @@
+// 專案樣式
+
+:root {
+  // color
+  --dark-blue: rgb(35, 85, 107);
+  --bright-blue: #5194bb;
+
+  // theme
+  --main-text-color: white;
+  --main-background-color: var(--bright-blue);
+}
+
+// 清除預設樣式
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+// 基礎及共用樣式
+html,
+body,
+#root {
+  color: var(--main-text-color);
+  background-color: var(--main-background-color);
+  font-family: 'Lato', 'Noto Sans TC', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
