@@ -1,0 +1,56 @@
+.createForm,
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 25px auto;
+  padding: 20px;
+  border: 1px solid var(--bright-blue);
+  border-radius: 10px;
+  background-color: var(--dark-background-color);
+
+  .form-group {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+
+    label {
+      font-size: 14px;
+      color: var(--light-gray);
+    }
+
+    input {
+      width: 100%;
+      outline: none;
+      border: 1px solid var(--bright-blue);
+      border-radius: 5px;
+      background: none;
+      color: white;
+      height: 40px;
+      padding: 0 10px;
+      font-size: 16px;
+    }
+
+    input[type='date'] {
+      letter-spacing: 2px;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: var(--bright-blue);
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--hover-blue);
+    }
+  }
+}

@@ -4,10 +4,13 @@
   // color
   --dark-blue: rgb(35, 85, 107);
   --bright-blue: #5194bb;
+  --hover-blue: #6ba7c1;
+  --dark-gray: #4a4a4a;
 
   // theme
   --main-text-color: white;
   --main-background-color: var(--bright-blue);
+  --dark-background-color: #1c3a49;
 }
 
 // 清除預設樣式
@@ -29,4 +32,10 @@ body,
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+// 功能
+.completed {
+  opacity: 0.4;
+  text-decoration: line-through 3px black;
 }

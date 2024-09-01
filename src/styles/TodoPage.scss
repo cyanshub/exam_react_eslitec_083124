@@ -1,0 +1,50 @@
+.todoPage {
+  width: 95vw;
+  min-width: 200px;
+  max-width: 1200px;
+  padding: 30px;
+  background-color: var(--dark-blue);
+  border-radius: 5px;
+  margin-top: calc(100vh / 20);
+  margin-bottom: calc(100vh / 20);
+  text-align: left;
+
+  h1 {
+    text-align: center;
+    color: var(--bright-blue);
+    margin-bottom: 1.5rem;
+  }
+
+  // 排版組件位置
+  .todoContent {
+    display: flex;
+    gap: 20px;
+  }
+
+  .createForm {
+    margin-left: 0;
+    flex: 1;
+  }
+
+  .todos {
+    flex: 1;
+    border-left: 1px solid var(--bright-blue);
+    padding-left: 20px;
+  }
+
+  .todoRow {
+    // cursor: pointer;
+    padding: 10px 0;
+    color: white;
+    border-bottom: 1px solid var(--bright-blue);
+  }
+
+  .todoItem {
+    cursor: pointer;
+    min-width: 60px;
+  }
+
+  .todoItem:hover {
+    color: var(--bright-blue);
+  }
+}
