@@ -4,7 +4,15 @@ import axios from 'axios'
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 // 建立 axios 的物件實例設定通用配置
-const axiosInstance = axios.create({ baseURL: baseUrl })
+// 預設使用 node.js/express 的 api
+let axiosInstance = axios.create({ baseURL: baseUrl })
+console.log(`Backend APIs url has been switched to ${baseUrl}`)
+
+// 動態更新 baseURL
+export const updateBaseUrl = (newBaseUrl) => {
+  axiosInstance = axios.create({ baseURL: newBaseUrl })
+  console.log(`Backend APIs url has been switched to ${newBaseUrl}`)
+}
 
 export const todoController = {
   getTodos: async () => {
@@ -54,7 +62,7 @@ export const todoController = {
         date,
         location,
         creator
-      })
+      }, { withCredentials: false })
 
       // 回傳拿到的資料
       console.log('新增資料:', res.data.data.todo)

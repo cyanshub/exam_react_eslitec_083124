@@ -1,6 +1,7 @@
 // 載入頁面工具
 import { useEffect, useState } from 'react'
 import '../styles/TodoPage.scss'
+import { updateBaseUrl } from '../apis/todo-controller'
 
 // 載入頁面所需 UI 元件
 import { Todos, CreateForm, EditForm } from '../components/TodoPageComponents'
@@ -48,6 +49,7 @@ const TodoPage = () => {
   const [todos, setTodos] = useState(todosDummy)
   const [isEditing, setIsEditing] = useState(false)
   const [currentTodo, setCurrentTodo] = useState(null)
+  const [currentServer, setCurrentServer] = useState(import.meta.env.VITE_API_BASE_URL_NODE)
 
   // 啟用轉址功能
   const navigate = useNavigate()
@@ -162,9 +164,34 @@ const TodoPage = () => {
     }
   }
 
+  // 設計切換後端 API 網址的事件處理程序
+  const switchApi = (apiUrl) => {
+    setCurrentServer(apiUrl)
+    return updateBaseUrl(apiUrl)
+  }
+
   return (
     <div className="todoPage">
       <h1>任務管理系統</h1>
+      <div className="mb-2">目前連接到的 API 伺服器位於: {currentServer}</div>
+
+      {/* 切換後端 API 的互動介面  */}
+      <div>
+        <button
+          className="btn btn-outline-secondary me-4"
+          onClick={() => switchApi(import.meta.env.VITE_API_BASE_URL_NODE)}
+        >
+          Switch APIs to Node.js
+        </button>
+
+        <button
+          className="btn btn-outline-secondary"
+          onClick={() => switchApi(import.meta.env.VITE_API_BASE_URL_PYTHON)}
+        >
+          Switch APIs to Python
+        </button>
+      </div>
+
       <div className="todoContent">
         {isEditing ? (
           // B(5) 將子組件傳過來的參數傳給事件處理程序 saveTodo
