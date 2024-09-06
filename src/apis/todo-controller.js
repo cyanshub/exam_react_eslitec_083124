@@ -15,10 +15,29 @@ export const todoController = {
       // 回傳拿到的資料:
       // res.data 是 axios 的格式
       // 這邊設計的後端則將資料也包裝成 data
-      console.log('測試拿到的資料:', res.data.data.todos)
+      console.log('回傳資料:', res.data.data.todos)
       return res.data.data.todos
     } catch (error) {
-      console.error('[Get Todos failed]:', error)
+      let errorMessage = '無法取得資料，請稍後再試!'
+
+      // axios 的 error.response 對應於 res.data
+      if (error.response) {
+        // 處理後端回傳的錯誤碼(統一在回傳 data 新增 status 屬性)
+        const status = error.response.data.status
+        errorMessage = error.response.data.error || errorMessage
+
+        // 根據不同的錯誤狀態碼處理錯誤訊息
+        if (status === 404) {
+          console.error('找不到資料:', errorMessage)
+        } else {
+          console.error('[Get Todos failed]:', errorMessage)
+        }
+      } else {
+        // 處理沒有 error.response 的情況
+        console.error('[Get Todos failed]:', errorMessage)
+      }
+
+      throw new Error(errorMessage)
     }
   },
   postTodo: async (payload) => {
@@ -38,10 +57,31 @@ export const todoController = {
       })
 
       // 回傳拿到的資料
-      console.log('測試拿到的資料:', res.data.data.todo)
+      console.log('新增資料:', res.data.data.todo)
       return res.data.data.todo
     } catch (error) {
-      console.error('[Create Todo failed]:', error)
+      let errorMessage = '無法新增資料，請稍後再試!'
+
+      // axios 的 error.response 對應於 res.data
+      if (error.response) {
+        // 處理後端回傳的錯誤碼(統一在回傳 data 新增 status 屬性)
+        const status = error.response.data.status
+        errorMessage = error.response.data.error || errorMessage
+
+        // 根據不同的錯誤狀態碼處理錯誤訊息
+        if (status === 422) {
+          console.error('驗證錯誤:', errorMessage)
+        } else if (status === 404) {
+          console.error('找不到資料:', errorMessage)
+        } else {
+          console.error('[Create Todo failed]:', errorMessage)
+        }
+      } else {
+        // 處理沒有 error.response 的情況
+        console.error('[Create Todo failed]:', error)
+      }
+
+      throw new Error(errorMessage)
     }
   },
   patchTodo: async (payload) => {
@@ -61,10 +101,31 @@ export const todoController = {
       })
 
       // 回傳拿到的資料
-      console.log('測試拿到的資料:', res.data.data.todo)
+      console.log('更新資料:', res.data.data.todo)
       return res.data.data.todo
     } catch (error) {
-      console.error('[Patch Todo failed]:', error)
+      let errorMessage = '無法更新資料，請稍後再試!'
+
+      // axios 的 error.response 對應於 res.data
+      if (error.response) {
+        // 處理後端回傳的錯誤碼(統一在回傳 data 新增 status 屬性)
+        const status = error.response.data.status
+        errorMessage = error.response.data.error || errorMessage
+
+        // 根據不同的錯誤狀態碼處理錯誤訊息
+        if (status === 422) {
+          console.error('驗證錯誤:', errorMessage)
+        } else if (status === 404) {
+          console.error('找不到資料:', errorMessage)
+        } else {
+          console.error('[Patch Todo failed]:', errorMessage)
+        }
+      } else {
+        // 處理沒有 error.response 的情況
+        console.error('[Patch Todo failed]:', error)
+      }
+
+      throw new Error(errorMessage)
     }
   },
   deleteTodo: async (id) => {
@@ -73,10 +134,29 @@ export const todoController = {
       const res = await axiosInstance.delete(`/todos/${id}`)
 
       // 回傳拿到的資料
-      console.log('測試拿到的資料:', res.data.data.todo)
+      console.log('刪除資料:', res.data.data.todo)
       return res.data.data.todo
     } catch (error) {
-      console.error('[Delete Todo failed]:', error)
+      let errorMessage = '無法刪除資料，請稍後再試!'
+
+      // axios 的 error.response 對應於 res.data
+      if (error.response) {
+        // 處理後端回傳的錯誤碼(統一在回傳 data 新增 status 屬性)
+        const status = error.response.data.status
+        errorMessage = error.response.data.error || errorMessage
+
+        // 根據不同的錯誤狀態碼處理錯誤訊息
+        if (status === 404) {
+          console.error('找不到資料:', errorMessage)
+        } else {
+          console.error('[Delete Todo failed]:', errorMessage)
+        }
+      } else {
+        // 處理沒有 error.response 的情況
+        console.error('[Delete Todo failed]:', error)
+      }
+
+      throw new Error(errorMessage)
     }
   },
   toggleTodoCompleted: async (id) => {
@@ -85,10 +165,29 @@ export const todoController = {
       const res = await axiosInstance.patch(`/todos/${id}/toggleTodoCompleted`)
 
       // 回傳拿到的資料
-      console.log('測試拿到的資料:', res.data.data.todo)
+      console.log('更新資料:', res.data.data.todo)
       return res.data.data.todo
     } catch (error) {
-      console.error('[Toggle isCompleted of Todo failed]:', error)
+      let errorMessage = '無法變更資料，請稍後再試!'
+
+      // axios 的 error.response 對應於 res.data
+      if (error.response) {
+        // 處理後端回傳的錯誤碼(統一在回傳 data 新增 status 屬性)
+        const status = error.response.data.status
+        errorMessage = error.response.data.error || errorMessage
+
+        // 根據不同的錯誤狀態碼處理錯誤訊息
+        if (status === 404) {
+          console.error('找不到資料:', errorMessage)
+        } else {
+          console.error('[Toggle isCompleted of Todo failed]:', errorMessage)
+        }
+      } else {
+        // 處理沒有 error.response 的情況
+        console.error('[Toggle isCompleted of Todo failed]:', error)
+      }
+
+      throw new Error(errorMessage)
     }
   }
 }

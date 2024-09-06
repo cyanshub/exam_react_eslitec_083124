@@ -5,6 +5,7 @@ import '../styles/TodoPage.scss'
 // 載入頁面所需 UI 元件
 import { Todos, CreateForm, EditForm } from '../components/TodoPageComponents'
 import { todoController } from '../apis/todo-controller'
+import { useNavigate } from 'react-router-dom'
 
 // Dummy data: 先用測試資料, 後續再帶入資料庫資料
 const todosDummy = [
@@ -48,6 +49,9 @@ const TodoPage = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [currentTodo, setCurrentTodo] = useState(null)
 
+  // 啟用轉址功能
+  const navigate = useNavigate()
+
   // 設計 useEffect: 第二個參數為[],
   // 表示首次渲染執行一次（只在組件掛載時執行一次）
   useEffect(() => {
@@ -65,6 +69,9 @@ const TodoPage = () => {
         setTodos(combinedTodos)
       } catch (error) {
         console.error(error)
+
+        // 如果錯誤發生, 可以自動跳轉到指定頁面, 例如返回到 todos 頁面
+        navigate('/todos') // 使用 React Router 的 navigate 來跳轉
       }
     }
 
@@ -95,6 +102,9 @@ const TodoPage = () => {
       setIsEditing(false)
     } catch (error) {
       console.error(error)
+
+      // 如果錯誤發生, 可以自動跳轉到指定頁面, 例如返回到 todos 頁面
+      navigate('/todos') // 使用 React Router 的 navigate 來跳轉
     }
   }
 
@@ -109,6 +119,9 @@ const TodoPage = () => {
       setTodos([...todos, createdTodo])
     } catch (error) {
       console.error(error)
+
+      // 如果錯誤發生, 可以自動跳轉到指定頁面, 例如返回到 todos 頁面
+      navigate('/todos') // 使用 React Router 的 navigate 來跳轉
     }
   }
 
@@ -124,6 +137,9 @@ const TodoPage = () => {
       setTodos(todos.filter((todo) => todo.id !== id))
     } catch (error) {
       console.error(error)
+
+      // 如果錯誤發生, 可以自動跳轉到指定頁面, 例如返回到 todos 頁面
+      navigate('/todos') // 使用 React Router 的 navigate 來跳轉
     }
   }
 
@@ -140,6 +156,9 @@ const TodoPage = () => {
       )
     } catch (error) {
       console.error(error)
+
+      // 如果錯誤發生, 可以自動跳轉到指定頁面, 例如返回到 todos 頁面
+      navigate('/todos') // 使用 React Router 的 navigate 來跳轉
     }
   }
 
